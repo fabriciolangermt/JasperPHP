@@ -291,7 +291,9 @@ class PdfProcessor {
         if ($this->print_expression_result == true) {
            //var_dump($arraydata["style"]);
             //echo ($arraydata["x1"] + JasperPHP\Instructions::$arrayPageSetting["leftMargin"])."||". ($arraydata["y1"] + JasperPHP\Instructions::$y_axis)."||". ($arraydata["x2"] + JasperPHP\Instructions::$arrayPageSetting["leftMargin"])."||". $arraydata["y2"] + JasperPHP\Instructions::$y_axis."||". $arraydata["style"]; 
-            
+            if (isset($arraydata["style"]['width']) && is_string($arraydata["style"]['width'])) {
+                $arraydata["style"]['width'] = intval($arraydata["style"]['width']);
+            }
             JasperPHP\Instructions::$objOutPut->Line((int)$arraydata["x1"] + JasperPHP\Instructions::$arrayPageSetting["leftMargin"], (int)$arraydata["y1"] + JasperPHP\Instructions::$y_axis, (int)$arraydata["x2"] + JasperPHP\Instructions::$arrayPageSetting["leftMargin"], (int)$arraydata["y2"] + JasperPHP\Instructions::$y_axis, $arraydata["style"]);
         }
     }
